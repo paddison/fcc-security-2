@@ -11,8 +11,7 @@ var fccTestingRoutes  = require('./routes/fcctesting.js');
 var runner            = require('./test-runner');
 var mongoose = require("mongoose");
 
-const DATABASE = "mongodb+srv://paddison:sevenfl4tseven@cluster0.hu1mh.mongodb.net/paddison?retryWrites=true&w=majority"
-mongoose.connect(DATABASE, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true});
 var app = express();
 
 
@@ -62,7 +61,7 @@ app.use(function(req, res, next) {
 //Start our server and tests!
 app.listen(process.env.PORT || 3000, function () {
   console.log("Listening on port " + process.env.PORT);
-  if(true){//process.env.NODE_ENV==='test') {
+  if(process.env.NODE_ENV==='test') {
     console.log('Running Tests...');
     setTimeout(function () {
       try {
